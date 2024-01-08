@@ -85,6 +85,7 @@ int main() {
         min_arrival_time = min(min_arrival_time,p[i].arrival_time);
         max_completion_time = max(max_completion_time,p[i].completion_time);
     }
+    
     avg_turnaround_time = (float) total_turnaround_time / n;
     avg_waiting_time = (float) total_waiting_time / n;
     cout<<endl<<endl;
