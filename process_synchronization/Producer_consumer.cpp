@@ -5,6 +5,8 @@ using namespace std;
  void consumer();
  void check_full();
  void check_empty();
+ void wait();
+ void signal();
 
 int n,i;
 int semaphore_s =1;
@@ -38,20 +40,22 @@ cout<<"Program Ended";
 void producer()
     {       
     check_full();
+    wait();
     buffer[i]=semaphore_f;
     cout<<"Produced :"<<buffer[i]<<endl;
     i++;
     semaphore_f++;
+    signal();
     }
 
 void consumer()
     {       
     check_empty();
-    int temp;
-    temp=buffer[i];
-    cout<<"Consumed :"<<temp<<endl;
+    wait();
     i--;
+    cout<<"Consumed ="<<buffer[i]<<endl;
     semaphore_f--;
+    signal();
     }
 
 void check_full()
@@ -68,4 +72,15 @@ void check_empty()
         cout<<"The buffer is Empty so cant consume";
         exit(2);
         }
+    }
+void wait()
+    {
+         --semaphore_s;
+         cout<<"Semaphore ="<<semaphore_s <<"\tother processes are hold for this time"<<endl;
+    }
+
+void signal()
+    {
+         ++semaphore_s;
+         cout<<"Semaphore ="<<semaphore_s<<"\tNow Other process can be executed"<<endl;
     }
