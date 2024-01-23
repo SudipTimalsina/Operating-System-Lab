@@ -14,7 +14,7 @@ int semaphore_f=0;
 int buffer[]={};
 
 int main()
-{  ;
+{
 char checker;
 char choice;
 cout<<"Enter the Size of Buffer :";
@@ -73,7 +73,7 @@ void check_empty()
         exit(2);
         }
     }
-void wait()
+void wait()        
     {
          --semaphore_s;
          cout<<"Semaphore ="<<semaphore_s <<"\tother processes are hold for this time"<<endl;
